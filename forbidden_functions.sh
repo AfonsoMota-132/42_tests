@@ -11,6 +11,11 @@
 # **************************************************************************** #
 
 #!bin/bash
+libft="malloc"
+
+if [ "$1" = "push_swap" ]; then
+	POSSIBLE="exit\|free\|$libft"
+fi
 
 nm $1 -u | grep -v "__"\
-	| awk '{print $2}' | awk -F "@" '{print $1}'
+	| awk '{print $2}' | awk -F "@" '{print $1}' | grep -v $POSSIBLE
